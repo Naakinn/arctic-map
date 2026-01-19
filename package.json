@@ -12,5 +12,14 @@
   "type": "commonjs",
   "dependencies": {
     "http-server": "^14.1.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Naakinn/arctic-map.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Naakinn/arctic-map/issues"
+  },
+  "homepage": "https://github.com/Naakinn/arctic-map#readme"
 }
+
