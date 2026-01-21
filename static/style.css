@@ -1,0 +1,13 @@
+.container-root {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20rem;
+}
+
+.btn-root {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
