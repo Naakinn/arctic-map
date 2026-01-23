@@ -5,19 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Интерактивная карта</title>
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 </head>
 
 <body>
-    <div class="container-root">
-        <h1 style="text-align: center;">О проекте</h1>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu diam efficitur, ullamcorper augue eu,
-            lobortis nibh. Vivamus condimentum interdum neque, quis tristique odio malesuada eget. Fusce vel blandit
-            orci. Phasellus non dignissim diam. Vivamus ullamcorper justo libero, maximus ullamcorper velit sagittis
-            quis. Fusce et orci nisi. Duis dapibus imperdiet lacus mollis lacinia. Aenean sit amet nisl commodo odio.
-        </p>
+    <div class="container-fluid">
+        <div class="card" style="width: 25rem;">
+            <div class="card-body">
+                <h4 class="card-title">О проекте</h4>
+                <p class="card-text">
+                    <p>Проект создан в рамках муниципального конкурса «Цифровой Берег. Мурманск.</p>
+                    <p>Исходный код проекта доступен для чтения и распространения.</p>
+                </p>
+                <a href="/index.html" class="btn btn-primary">Назад</a>
+            </div>
+        </div>
     </div>
 </body>
-
+<style>
+    .container-fluid {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .card {
+        margin-top: 10%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
 </html>
