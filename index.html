@@ -1,30 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Интерактивная карта</title>
-     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
-     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 </head>
+
 <body>
-    <div class="container-fluid" id="root">
-        <h2 style="text-align: center;">Арктические экспедиции: звездный маршрут</h2>
-        <a class="btn btn-primary btn-root" href="pages/main.html" role="button">Вперед!!!</a>
-        <a class="btn btn-primary btn-root" href="pages/about.html" role="button">О проекте</a>
+    <div class="card" style="width: 25rem;">
+        <div class="card-body">
+            <h2 style="text-align: center; width: 23rem;">Арктические экспедиции: звездный маршрут</h2>
+            <a class="btn btn-primary btn-root" href="pages/main.html" role="button">Вперед!!!</a>
+            <a class="btn btn-primary btn-root" href="pages/about.html" role="button">О проекте</a>
+        </div>
     </div>
 </body>
 <style>
-#root {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.btn-root {
-    width: 10rem;
-    margin-top: 1rem;
-    
-}
-</style>
-</html>
+    .card {
+        margin-top: 10%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .card-body {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
 
+    .btn-root {
+        width: 10rem;
+        margin-top: 1rem;
+    }
+</style>
+
+</html>
