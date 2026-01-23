@@ -10,7 +10,17 @@
 </head>
 
 <body>
-    <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/index.html">Интерактивная карта</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+    <div class="container-fluid" id="container-fluid-main">
         <div class="card" style="width: auto;">
             <div class="card-body d-flex flex-column">
                 <h5 class="card-title">
@@ -137,7 +147,7 @@
                 <a href="#" class="btn btn-primary mt-auto" style="width: fit-content;">Go somewhere</a>
             </div>
         </div>
-        <div class="card" style="width: auto;">
+        <div class="card" style="width: auto; margin-bottom: 1rem;">
             <div class="card-body d-flex flex-column">
                 <h5 class="card-title">
                     11. Международное сотрудничество: Создание Арктического совета (1996 г.)
@@ -149,7 +159,7 @@
                 <a href="#" class="btn btn-primary mt-auto" style="width: fit-content;">Go somewhere</a>
             </div>
         </div>
-        <div class="card" style="width: auto;">
+        <div class="card" style="width: auto; margin-bottom: 1rem;">
             <div class="card-body d-flex flex-column">
                 <h5 class="card-title">
                     12. Арктика сегодня: Климат, технологии и будущее (2000–2026 гг.)
@@ -171,7 +181,7 @@
         margin-right: 0.5rem;
     }
 
-    .container-fluid {
+    #container-fluid-main {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: none;
