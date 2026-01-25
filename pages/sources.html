@@ -2,37 +2,133 @@
 <html lang="ru">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Источники</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Материалы и источники</title>
 
-    <link rel="stylesheet" href="../libs/bootstrap-5.3.8-dist/css/bootstrap.css">
-    <script src="../libs/bootstrap-5.3.8-dist/js/bootstrap.bundle.js"></script>
+  <link rel="stylesheet" href="../libs/bootstrap-5.3.8-dist/css/bootstrap.min.css">
+  <script src="../libs/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    .box {
+      border-radius: 16px;
+    }
+
+    code {
+      word-break: break-all;
+    }
+  </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../index.html">Интерактивная карта</a>
-            <div class="d-flex gap-2">
-                <a class="btn btn-outline-primary btn-sm" href="./main.html">Маршрут</a>
-                <a class="btn btn-outline-secondary btn-sm" href="./about.html">О проекте</a>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container my-4" style="max-width: 900px;">
-        <h3>Источники</h3>
-        <p class="text-muted">
-            При добавлении фактов и иллюстраций важно указывать источник. Ниже — список, который можно пополнять.
-        </p>
-
-        <ol>
-            <li>Encyclopaedia Britannica (Vikings, Arctic exploration) — справочная информация</li>
-            <li>Учебники/энциклопедии по истории географических открытий и освоения Севера</li>
-            <li>Научно-популярные статьи о дрейфующих станциях и экспедициях</li>
-        </ol>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="../index.html">Интерактивная карта</a>
+      <div class="d-flex gap-2">
+        <a class="btn btn-outline-primary btn-sm" href="./main.html">Маршрут</a>
+        <a class="btn btn-outline-secondary btn-sm" href="./about.html">О проекте</a>
+      </div>
     </div>
+  </nav>
+
+  <div class="container my-4" style="max-width: 980px;">
+    <div class="p-4 border bg-light box">
+      <h3 class="mb-2">Материалы для изучения и источники</h3>
+      <p class="text-muted mb-0">
+        Этот список можно пополнять. Если берёшь текст, факты, даты или изображения — указывай источник.
+        Ниже — подборка качественных материалов по двум темам проекта.
+      </p>
+    </div>
+
+    <!-- Как ссылаться -->
+    <div class="p-4 border mt-3 box">
+      <h5>Как правильно указывать источник (простое правило)</h5>
+      <ul class="mb-2">
+        <li>Если берёшь факт/дату — укажи источник рядом с фактом (или в поле <b>src</b> в data.js).</li>
+        <li>Если берёшь картинку — подпиши под картинкой: автор/сайт/страница/год, и откуда взято.</li>
+        <li>Если пересказываешь своими словами — всё равно укажи, где проверял информацию.</li>
+      </ul>
+      <div class="alert alert-warning py-2 mb-0">
+        В конкурсных работах обычно ценится своё изложение. Копипаст без ссылок — минус.
+      </div>
+    </div>
+
+    <!-- ТЕМА 1 -->
+    <div class="p-4 border mt-3 box">
+      <h4 class="mb-2">Тема 1: История российской космонавтики 🚀</h4>
+
+      <h6 class="mt-3">Официальные / музейные ресурсы</h6>
+      <ul>
+        <li>Госкорпорация «Роскосмос» — новости, справочная информация, факты: <code>https://www.roscosmos.ru/</code></li>
+        <li>Музей космонавтики (Москва) — материалы, экспозиции, биографии: <code>https://kosmo-museum.ru/</code></li>
+        <li>РКК «Энергия» (история кораблей «Союз», станции): <code>https://www.energia.ru/</code></li>
+      </ul>
+
+      <h6 class="mt-3">Учебные/энциклопедические источники</h6>
+      <ul>
+        <li>Большая российская энциклопедия (поиск статей: «Гагарин», «Королёв», «Салют», «Мир»): <code>https://bigenc.ru/</code></li>
+        <li>Энциклопедические статьи (Britannica — для сверки фактов и дат): <code>https://www.britannica.com/</code></li>
+      </ul>
+
+      <h6 class="mt-3">Документальные фильмы и лекции (для понимания)</h6>
+      <ul>
+        <li>Роскосмос/официальные каналы (YouTube-подборки, интервью космонавтов): <code>https://www.youtube.com/</code> (поиск: “Роскосмос Гагарин”, “Леонов выход в космос”)</li>
+        <li>Лекции о космонавтике (университеты/музеи): <code>https://www.youtube.com/</code> (поиск: “лекция история космонавтики”)</li>
+      </ul>
+
+      <h6 class="mt-3">Что полезно изучить для этапов в приложении</h6>
+      <ul class="mb-0">
+        <li>1957 — «Спутник-1»</li>
+        <li>1961 — «Восток-1», Юрий Гагарин</li>
+        <li>1963 — «Восток-6», Валентина Терешкова</li>
+        <li>1965 — Алексей Леонов, первый выход в открытый космос</li>
+        <li>1971 — «Салют-1» (первая орбитальная станция)</li>
+        <li>1986 — станция «Мир»</li>
+      </ul>
+    </div>
+
+    <!-- ТЕМА 2 -->
+    <div class="p-4 border mt-3 box">
+      <h4 class="mb-2">Тема 2: Арктические экспедиции — «звёздный маршрут» ❄️</h4>
+
+      <h6 class="mt-3">Официальные / научные организации</h6>
+      <ul>
+        <li>Арктический и антарктический НИИ (ААНИИ) — исследования, история экспедиций: <code>https://www.aari.ru/</code></li>
+        <li>Русское географическое общество — публикации и проекты про экспедиции: <code>https://www.rgo.ru/</code></li>
+      </ul>
+
+      <h6 class="mt-3">Справочные материалы</h6>
+      <ul>
+        <li>Большая российская энциклопедия (поиск: “Северный морской путь”, “дрейфующая станция”): <code>https://bigenc.ru/</code></li>
+        <li>Научно-популярные статьи/энциклопедии для сверки дат и терминов (например, Britannica): <code>https://www.britannica.com/</code></li>
+      </ul>
+
+      <h6 class="mt-3">Что полезно изучить для этапов в приложении</h6>
+      <ul class="mb-0">
+        <li>Поморы и освоение северных морей</li>
+        <li>Северный морской путь: что это и зачем нужен</li>
+        <li>Дрейфующие станции: что значит “дрейфующая”</li>
+        <li>Ледоколы и зачем они нужны</li>
+        <li>Ключевые экспедиции и их вклад (маршруты, открытия, исследования)</li>
+      </ul>
+    </div>
+
+    <!-- Пример ссылок в проект -->
+    <div class="p-4 border mt-3 box">
+      <h5>Как это использовать прямо в проекте</h5>
+      <p class="mb-2">
+        В файле <b>scripts/data.js</b> у каждого этапа есть поле <b>src</b>. Туда можно писать источники.
+      </p>
+      <div class="alert alert-info py-2 mb-0">
+        Пример: <br>
+        <code>src: ["Роскосмос: https://www.roscosmos.ru/", "БРЭ: https://bigenc.ru/"]</code>
+      </div>
+    </div>
+
+    <div class="text-muted mt-3 small">
+      Совет: если добавишь изображения — создай папку <b>images/</b> и подпиши источник под каждой картинкой.
+    </div>
+  </div>
 </body>
 
 </html>

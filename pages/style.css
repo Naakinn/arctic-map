@@ -1,0 +1,18 @@
+#list .card {
+    border-radius: 16px;
+  }
+  
+  .progress {
+    height: 10px;
+    border-radius: 999px;
+  }
+  
+  .topic-card {
+    border-radius: 16px;
+  }
+  
+  .small-muted {
+    font-size: 0.92rem;
+    color: #6c757d;
+  }
+  

@@ -2,98 +2,120 @@
 <html lang="ru">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Арктические экспедиции — Маршрут</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Обучающее веб-приложение — Маршрут</title>
 
-    <link rel="stylesheet" href="../libs/bootstrap-5.3.8-dist/css/bootstrap.css">
-    <script src="../libs/bootstrap-5.3.8-dist/js/bootstrap.bundle.js"></script>
+  <!-- Bootstrap локально -->
+  <link rel="stylesheet" href="../libs/bootstrap-5.3.8-dist/css/bootstrap.min.css">
+  <script src="../libs/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Стили проекта -->
+  <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../index.html">Интерактивная карта</a>
-            <div class="d-flex gap-2">
-                <a class="btn btn-outline-primary btn-sm" href="./sources.html">Источники</a>
-                <a class="btn btn-outline-secondary btn-sm" href="./about.html">О проекте</a>
-            </div>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="../index.html">Интерактивная карта</a>
+      <div class="d-flex gap-2">
+        <a class="btn btn-outline-primary btn-sm" href="./sources.html">Материалы</a>
+        <a class="btn btn-outline-secondary btn-sm" href="./about.html">О проекте</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container my-3">
+
+    <!-- Заголовок -->
+    <div class="row g-3 align-items-stretch">
+      <div class="col-12 col-lg-8">
+        <div class="p-3 border bg-light topic-card">
+          <h4 class="mb-1">Учебный маршрут: знания через этапы ✨</h4>
+          <div class="small-muted">
+            Выбирай тему, открывай этапы, читай факт и отвечай на вопрос.
+            Прогресс сохраняется на этом компьютере.
+          </div>
         </div>
-    </nav>
+      </div>
 
-    <div class="container my-3">
-        <div class="row g-3 align-items-stretch">
-            <div class="col-12 col-lg-8">
-                <div class="p-3 border rounded-3 bg-light">
-                    <h4 class="mb-1">Звёздный маршрут по Арктике ✨</h4>
-                    <div class="text-muted">
-                        Выбирай этап, читай факт и отвечай на вопрос. Прогресс сохраняется на этом компьютере.
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-lg-4">
-                <div class="p-3 border rounded-3">
-                    <div class="d-flex justify-content-between">
-                        <div><b>Пройдено:</b> <span id="pDone">0</span>/<span id="pAll">0</span></div>
-                        <div><b>Верно:</b> <span id="pOk">0</span></div>
-                    </div>
-                    <div class="progress mt-2" role="progressbar" aria-label="progress">
-                        <div id="pBar" class="progress-bar" style="width: 0%"></div>
-                    </div>
-                    <button id="btnReset" class="btn btn-sm btn-outline-danger mt-2">Сбросить прогресс</button>
-                </div>
-            </div>
+      <!-- Прогресс -->
+      <div class="col-12 col-lg-4">
+        <div class="p-3 border topic-card">
+          <div class="d-flex justify-content-between">
+            <div><b>Пройдено:</b> <span id="pDone">0</span>/<span id="pAll">0</span></div>
+            <div><b>Верно:</b> <span id="pOk">0</span></div>
+          </div>
+          <div class="progress mt-2">
+            <div id="pBar" class="progress-bar" style="width: 0%"></div>
+          </div>
+          <button id="btnReset" class="btn btn-sm btn-outline-danger mt-2">
+            Сбросить прогресс
+          </button>
         </div>
-
-        <div id="list" class="row g-3 mt-1"></div>
+      </div>
     </div>
 
-    <!-- Модалка этапа -->
-    <div class="modal fade" id="mStage" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="mTitle">Этап</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-                </div>
-                <div class="modal-body">
-                    <p id="mText" class="mb-2"></p>
-
-                    <div class="alert alert-info py-2">
-                        <b>Факт:</b> <span id="mFact"></span>
-                    </div>
-
-                    <div class="mt-3">
-                        <div class="mb-2"><b>Вопрос:</b> <span id="qText"></span></div>
-                        <div id="qAns" class="d-grid gap-2"></div>
-                        <div id="qMsg" class="mt-2"></div>
-                    </div>
-
-                    <hr />
-                    <div class="small text-muted">
-                        <b>Источник(и):</b> <span id="mSrc"></span>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                </div>
-            </div>
+    <!-- Выбор темы -->
+    <div class="row g-3 mt-1">
+      <div class="col-12">
+        <div class="p-3 border topic-card">
+          <div class="d-flex flex-wrap gap-2 align-items-center">
+            <b>Тема:</b>
+            <button id="btnSpace" class="btn btn-outline-primary btn-sm">
+              История российской космонавтики 🚀
+            </button>
+            <button id="btnArctic" class="btn btn-outline-primary btn-sm">
+              Арктические экспедиции ❄️
+            </button>
+            <span class="ms-auto text-muted">
+              Выбрано: <b id="topicName">—</b>
+            </span>
+          </div>
         </div>
+      </div>
     </div>
 
-    <script src="../scripts/data.js"></script>
-    <script src="../scripts/app.js"></script>
+    <!-- Карточки -->
+    <div id="list" class="row g-3 mt-1"></div>
+  </div>
+
+  <!-- Модальное окно -->
+  <div class="modal fade" id="mStage" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="mTitle">Этап</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p id="mText"></p>
+
+          <div class="alert alert-info py-2">
+            <b>Факт:</b> <span id="mFact"></span>
+          </div>
+
+          <div class="mt-3">
+            <b>Вопрос:</b> <span id="qText"></span>
+            <div id="qAns" class="d-grid gap-2 mt-2"></div>
+            <div id="qMsg" class="mt-2"></div>
+          </div>
+
+          <hr>
+          <div class="small text-muted">
+            <b>Источник(и):</b> <span id="mSrc"></span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Скрипты -->
+  <script src="../scripts/data.js"></script>
+  <script src="../scripts/app.js"></script>
 </body>
-<style>
-    #list .card {
-        border-radius: 16px;
-    }
-
-    .progress {
-        height: 10px;
-        border-radius: 999px;
-    }
-</style>
 
 </html>

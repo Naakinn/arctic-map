@@ -1,19 +1,32 @@
 let m = new bootstrap.Modal(document.getElementById("mStage"));
 
-let p = {
-  done: {},
-  ok: 0
-};
+let curTopic = "space";
+let st = [];
+
+let p = { done: {}, ok: 0 };
+
+function keyP() {
+  return "p_" + curTopic;
+}
 
 function loadP() {
-  let s = localStorage.getItem("arctic_p");
+  let s = localStorage.getItem(keyP());
   if (s) p = JSON.parse(s);
   if (!p.done) p.done = {};
   if (!p.ok) p.ok = 0;
 }
 
 function saveP() {
-  localStorage.setItem("arctic_p", JSON.stringify(p));
+  localStorage.setItem(keyP(), JSON.stringify(p));
+}
+
+function setTopic(id) {
+  curTopic = id;
+  st = topics.find(x => x.id === id).stages;
+
+  loadP();
+  updP();
+  render();
 }
 
 function updP() {
@@ -28,13 +41,11 @@ function updP() {
   document.getElementById("pBar").style.width = pr + "%";
 }
 
-function card(i) {
-  let x = st[i];
-
+function card(x) {
   let done = p.done[x.id] ? "✅ пройдено" : "⏳ не пройдено";
 
   return `
-  <div class="col-12 col-md-6">
+  <div class="col-12 col-md-6 col-lg-4">
     <div class="card h-100">
       <div class="card-body d-flex flex-column">
         <div class="d-flex justify-content-between align-items-start gap-2">
@@ -50,12 +61,15 @@ function card(i) {
 
 function render() {
   let html = "";
-  for (let i = 0; i < st.length; i++) html += card(i);
+  for (let x of st) html += card(x);
   document.getElementById("list").innerHTML = html;
 
   document.querySelectorAll("button[data-id]").forEach(b => {
     b.addEventListener("click", () => openStage(b.dataset.id));
   });
+
+  document.getElementById("topicName").textContent =
+    topics.find(x => x.id === curTopic).title;
 }
 
 function openStage(id) {
@@ -64,7 +78,6 @@ function openStage(id) {
   document.getElementById("mTitle").textContent = x.title;
   document.getElementById("mText").textContent = x.text;
   document.getElementById("mFact").textContent = x.fact;
-
   document.getElementById("mSrc").textContent = x.src.join(" | ");
 
   document.getElementById("qText").textContent = x.q.t;
@@ -88,8 +101,8 @@ function openStage(id) {
 
 function answer(x, i) {
   let ok = i === x.q.ok;
-
   let msg = document.getElementById("qMsg");
+
   if (ok) {
     msg.innerHTML = `<div class="alert alert-success py-2">Верно! 🎉</div>`;
     if (!p.done[x.id]) p.ok++;
@@ -110,6 +123,7 @@ document.getElementById("btnReset").onclick = () => {
   render();
 };
 
-loadP();
-updP();
-render();
+document.getElementById("btnSpace").onclick = () => setTopic("space");
+document.getElementById("btnArctic").onclick = () => setTopic("arctic");
+
+setTopic("space");
