@@ -20,18 +20,42 @@ function saveP() {
   localStorage.setItem(keyP(), JSON.stringify(p));
 }
 
+function normP() {
+  let ok = 0;
+  let ids = {};
+  for (let x of st) ids[x.id] = 1;
+
+  for (let id in p.done) {
+    if (!ids[id]) delete p.done[id];
+  }
+
+  for (let x of st) {
+    if (p.done[x.id]) ok++;
+  }
+
+  if (p.ok !== ok) {
+    p.ok = ok;
+    saveP();
+  }
+}
+
 function setTopic(id) {
   curTopic = id;
   st = topics.find(x => x.id === id).stages;
 
   loadP();
+  normP();
   updP();
   render();
 }
 
 function updP() {
   let all = st.length;
-  let done = Object.keys(p.done).length;
+  let done = 0;
+
+  for (let x of st) {
+    if (p.done[x.id]) done++;
+  }
 
   document.getElementById("pAll").textContent = all;
   document.getElementById("pDone").textContent = done;
@@ -105,13 +129,15 @@ function answer(x, i) {
 
   if (ok) {
     msg.innerHTML = `<div class="alert alert-success py-2">Верно! 🎉</div>`;
-    if (!p.done[x.id]) p.ok++;
-    p.done[x.id] = 1;
+    if (!p.done[x.id]) {
+      p.ok++;
+      p.done[x.id] = 1;
+      saveP();
+    }
   } else {
     msg.innerHTML = `<div class="alert alert-danger py-2">Не совсем. Попробуй ещё раз 🙂</div>`;
   }
 
-  saveP();
   updP();
   render();
 }
