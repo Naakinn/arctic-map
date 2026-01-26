@@ -1,4 +1,5 @@
 let m = new bootstrap.Modal(document.getElementById("mStage"));
+let infoModal = new bootstrap.Modal(document.getElementById("infoModal"));
 
 let curTopic = "space";
 let st = [];
@@ -68,7 +69,8 @@ function updP() {
 function card(x) {
   let done = p.done[x.id] ? "✅ пройдено" : "⏳ не пройдено";
 
-  return `
+  if (curTopic == "arctic") {
+    return `
   <div class="col-12 col-md-6 col-lg-4">
     <div class="card h-100">
       <div class="card-body d-flex flex-column">
@@ -76,11 +78,26 @@ function card(x) {
           <h6 class="card-title mb-1">${x.title}</h6>
           <span class="badge text-bg-light">${done}</span>
         </div>
-        <p class="card-text text-muted mt-2">${x.text}</p>
-        <button class="btn btn-primary mt-auto" data-id="${x.id}">Открыть этап</button>
+        <p class="card-text text-muted mt-2 mb-2">${x.text}</p>
+        <button class="btn btn-primary mt-auto" data-info_id="${x.id}">Изучить теорию</button>
+        <button class="btn btn-primary mt-2" data-id="${x.id}">Открыть тесты</button>
       </div>
     </div>
   </div>`;
+  } else {
+    return `
+  <div class="col-12 col-md-6 col-lg-4">
+    <div class="card h-100">
+      <div class="card-body d-flex flex-column">
+        <div class="d-flex justify-content-between align-items-start gap-2">
+          <h6 class="card-title mb-1">${x.title}</h6>
+          <span class="badge text-bg-light">${done}</span>
+        </div>
+        <button class="btn btn-primary mt-auto" data-id="${x.id}">Открыть тесты</button>
+      </div>
+    </div>
+  </div>`;
+  }
 }
 
 function render() {
@@ -90,6 +107,10 @@ function render() {
 
   document.querySelectorAll("button[data-id]").forEach(b => {
     b.addEventListener("click", () => openStage(b.dataset.id));
+  });
+
+  document.querySelectorAll("button[data-info_id]").forEach(b => {
+    b.addEventListener("click", () => openInfo(b.dataset.info_id));
   });
 
   document.getElementById("topicName").textContent =
@@ -123,6 +144,17 @@ function openStage(id) {
   m.show();
 }
 
+function openInfo(id) {
+  let x = st.find(z => z.id === id);
+
+  document.getElementById("infoModalTitle").textContent = x.title;
+  document.getElementById("infoModalText").textContent = x.info_text;
+  document.getElementById("infoModalSrc").textContent = x.src.join(" | ");
+
+  infoModal.show();
+}
+
+
 function answer(x, i) {
   let ok = i === x.q.ok;
   let msg = document.getElementById("qMsg");
@@ -152,4 +184,4 @@ document.getElementById("btnReset").onclick = () => {
 document.getElementById("btnSpace").onclick = () => setTopic("space");
 document.getElementById("btnArctic").onclick = () => setTopic("arctic");
 
-setTopic("space");
+setTopic("arctic");
