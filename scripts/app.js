@@ -122,7 +122,6 @@ function openStage(id) {
 
   document.getElementById("mTitle").textContent = x.title;
   document.getElementById("mText").textContent = x.text;
-  document.getElementById("mFact").textContent = x.fact;
   document.getElementById("mSrc").textContent = x.src.join(" | ");
 
   document.getElementById("qText").textContent = x.q.t;
