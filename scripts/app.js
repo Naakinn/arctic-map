@@ -1,7 +1,7 @@
 let m = new bootstrap.Modal(document.getElementById("mStage"));
 let infoModal = new bootstrap.Modal(document.getElementById("infoModal"));
 
-let curTopic = "space";
+let curTopic = "arctic";
 let st = [];
 
 let p = { done: {}, ok: 0 };
@@ -69,8 +69,7 @@ function updP() {
 function card(x) {
   let done = p.done[x.id] ? "✅ пройдено" : "⏳ не пройдено";
 
-  if (curTopic == "arctic") {
-    return `
+  return `
   <div class="col-12 col-md-6 col-lg-4">
     <div class="card h-100">
       <div class="card-body d-flex flex-column">
@@ -84,20 +83,6 @@ function card(x) {
       </div>
     </div>
   </div>`;
-  } else {
-    return `
-  <div class="col-12 col-md-6 col-lg-4">
-    <div class="card h-100">
-      <div class="card-body d-flex flex-column">
-        <div class="d-flex justify-content-between align-items-start gap-2">
-          <h6 class="card-title mb-1">${x.title}</h6>
-          <span class="badge text-bg-light">${done}</span>
-        </div>
-        <button class="btn btn-primary mt-auto" data-id="${x.id}">Открыть тесты</button>
-      </div>
-    </div>
-  </div>`;
-  }
 }
 
 function render() {
@@ -179,8 +164,5 @@ document.getElementById("btnReset").onclick = () => {
   updP();
   render();
 };
-
-document.getElementById("btnSpace").onclick = () => setTopic("space");
-document.getElementById("btnArctic").onclick = () => setTopic("arctic");
 
 setTopic("arctic");
