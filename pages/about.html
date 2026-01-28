@@ -1,45 +1,140 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>О проекте</title>
-    <link rel="stylesheet" href="../libs/bootstrap-5.3.8-dist/css/bootstrap.css">
-    <script src="../libs/bootstrap-5.3.8-dist/js/bootstrap.bundle.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>О проекте</title>
+<link rel="stylesheet" href="../libs/bootstrap-5.3.8-dist/css/bootstrap.min.css">
+<script src="../libs/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+    /* Фоновый градиент и изображение */
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        min-height: 100vh;
+        color: #fff;
+    }
+
+    .hero-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("../images/background.jpg");
+        background-size: cover;
+        background-position: center;
+        filter: brightness(0.5) blur(1px);
+        z-index: -2;
+    }
+
+    .hero-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: -1;
+    }
+
+    /* Навигация */
+    .navbar {
+        background: rgba(0,0,0,0.45) !important;
+        backdrop-filter: blur(12px);
+        border-radius: 12px;
+        margin: 10px 20px;
+        z-index: 2;
+        transition: background 0.3s ease;
+    }
+    .navbar:hover { background: rgba(0,0,0,0.6) !important; }
+    .navbar .navbar-brand, .navbar .btn { color: #fff !important; font-weight: 500; }
+    .navbar .btn-outline-light { border-color: #fff; }
+    .navbar .btn-outline-light:hover { background: rgba(255,255,255,0.15); }
+
+    /* Контейнер */
+    .container {
+        margin-top: 15vh;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Карточка контента */
+    .content-card {
+        background: rgba(25,25,55,0.7);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 10px 35px rgba(0,0,0,0.3);
+    }
+
+    .content-card h3 { font-weight: 600; }
+
+    /* Списки */
+    .content-card ul li { margin-bottom: 0.5rem; }
+
+    /* Кнопки */
+    .btn-primary {
+        background: linear-gradient(90deg,#6a11cb,#2575fc);
+        border: none;
+        color: #fff;
+        font-weight: 500;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+        background: linear-gradient(90deg,#2575fc,#6a11cb);
+        transform: translateY(-2px);
+    }
+
+    .btn-outline-secondary {
+        border-color: #fff;
+        color: #fff;
+        transition: all 0.3s ease;
+    }
+    .btn-outline-secondary:hover {
+        background: rgba(255,255,255,0.15);
+        color: #fff;
+    }
+
+    p, li { color: #fff; }
+</style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../index.html">Интерактивная карта</a>
-            <div class="d-flex gap-2">
-                <a class="btn btn-outline-primary btn-sm" href="./main.html">Маршрут</a>
-                <a class="btn btn-outline-secondary btn-sm" href="./sources.html">Источники</a>
-            </div>
-        </div>
-    </nav>
+<div class="hero-bg"></div>
 
-    <div class="container my-4" style="max-width: 900px;">
-        <div class="p-4 border rounded-3 bg-light">
-            <h3 class="mb-2">О проекте</h3>
-            <p class="mb-2">
-                «Арктические экспедиции: звездный маршрут» — обучающее веб-приложение, где пользователь проходит этапы
-                освоения тем, связанных с историей изучения и покорения человеком Арктики, читает короткие факты, теорию, и отвечает на вопросы.
-            </p>
-            <ul class="mb-3">
-                <li>Интерактив: теория и вопросы по каждому этапу</li>
-                <li>Прогресс сохраняется на компьютере</li>
-                <li>Есть страница со списком источников</li>
-                <li>Проект можно расширять, добавляя новые этапы</li>
-            </ul>
-
-            <div class="d-flex gap-2">
-                <a class="btn btn-primary" href="./main.html">Перейти к маршруту</a>
-                <a class="btn btn-outline-secondary" href="../index.html">На главную</a>
-            </div>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="../index.html">Интерактивная карта</a>
+        <div class="d-flex gap-2">
+            <a class="btn btn-sm btn-outline-light" href="./main.html">Маршрут</a>
+            <a class="btn btn-sm btn-outline-light" href="./sources.html">Источники</a>
         </div>
     </div>
-</body>
+</nav>
 
+<div class="container my-4" style="max-width: 900px;">
+    <div class="content-card">
+        <h3 class="mb-3">О проекте</h3>
+        <p class="mb-2">
+            «Арктические экспедиции: звездный маршрут» — обучающее веб-приложение, где пользователь проходит этапы освоения тем, связанных с историей изучения и покорения человеком Арктики, читает короткие факты, теорию, и отвечает на вопросы.
+        </p>
+        <ul class="mb-3">
+            <li>Интерактив: теория и вопросы по каждому этапу</li>
+            <li>Прогресс сохраняется на компьютере</li>
+            <li>Есть страница со списком источников</li>
+            <li>Проект можно расширять, добавляя новые этапы</li>
+        </ul>
+
+        <div class="d-flex gap-2">
+            <a class="btn btn-primary" href="./main.html">Перейти к маршруту</a>
+            <a class="btn btn-outline-secondary" href="../index.html">На главную</a>
+        </div>
+    </div>
+</div>
+
+</body>
 </html>
+

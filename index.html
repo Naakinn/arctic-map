@@ -1,49 +1,117 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Арктические экспедиции - Главная</title>
-    <link rel="stylesheet" href="./libs/bootstrap-5.3.8-dist/css/bootstrap.css">
-    <script src="./libs/bootstrap-5.3.8-dist/js/bootstrap.bundle.js"></script>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Арктические экспедиции — Главная</title>
 
-<body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">Интерактивная карта</a>
-            <div class="d-flex gap-2">
-                <a class="btn btn-outline-primary btn-sm" href="pages/main.html">Маршрут</a>
-                <a class="btn btn-outline-secondary btn-sm" href="pages/sources.html">Материалы</a>
-            </div>
-        </div>
-    </nav>
-    <div class="card" style="width: 25rem;">
-        <div class="card-body">
-            <h2 style="text-align: center; width: 23rem;">Арктические экспедици: звездный маршрут</h2>
-            <a class="btn btn-primary btn-root" href="pages/main.html" role="button">Вперед!!!</a>
-            <a class="btn btn-primary btn-root" href="pages/about.html" role="button">О проекте</a>
-        </div>
-    </div>
-</body>
+<link rel="stylesheet" href="./libs/bootstrap-5.3.8-dist/css/bootstrap.min.css">
+<script src="./libs/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+
 <style>
-    .card {
-        margin-top: 10%;
-        margin-left: auto;
-        margin-right: auto;
+    /* Фоновый градиент и изображение */
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        min-height: 100vh;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    .card-body {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
+    .hero-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("./images/background.jpg");
+        background-size: cover;
+        background-position: center;
+        filter: brightness(0.5) blur(1px);
+        z-index: -2;
+    }
+
+    .hero-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: -1;
+    }
+
+    /* Навигация */
+    .navbar {
+        background: rgba(0,0,0,0.45) !important;
+        backdrop-filter: blur(12px);
+        border-radius: 12px;
+        margin: 10px 20px;
+        width: calc(100% - 40px);
+        z-index: 2;
+        transition: background 0.3s ease;
+    }
+    .navbar:hover { background: rgba(0,0,0,0.6) !important; }
+    .navbar .navbar-brand, .navbar .btn { color: #fff !important; font-weight: 500; }
+    .navbar .btn-outline-light { border-color: #fff; }
+    .navbar .btn-outline-light:hover { background: rgba(255,255,255,0.15); }
+
+    /* Главная карточка */
+    .main-card {
+        background: rgba(25,25,55,0.7);
+        backdrop-filter: blur(15px);
+        border-radius: 20px;
+        padding: 40px;
+        margin-top: 15vh;
+        text-align: center;
+        box-shadow: 0 10px 35px rgba(0,0,0,0.3);
+        max-width: 400px;
+        width: 90%;
+    }
+
+    .main-card h2 {
+        margin-bottom: 2rem;
+        font-weight: 600;
+        color: #fff;
     }
 
     .btn-root {
-        width: 10rem;
+        width: 12rem;
         margin-top: 1rem;
+        background: linear-gradient(90deg,#6a11cb,#2575fc);
+        border: none;
+        color: #fff;
+        font-weight: 500;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-root:hover {
+        background: linear-gradient(90deg,#2575fc,#6a11cb);
+        transform: translateY(-2px);
     }
 </style>
+</head>
 
+<body>
+<div class="hero-bg"></div>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">Интерактивная карта</a>
+        <div class="d-flex gap-2">
+            <a class="btn btn-sm btn-outline-light" href="pages/main.html">Маршрут</a>
+            <a class="btn btn-sm btn-outline-light" href="pages/sources.html">Материалы</a>
+        </div>
+    </div>
+</nav>
+
+<div class="main-card">
+    <h2>Арктические экспедиции</h2>
+    <a class="btn btn-root" href="pages/main.html" role="button">В путь!</a>
+    <a class="btn btn-root" href="pages/about.html" role="button">О проекте</a>
+</div>
+
+</body>
 </html>

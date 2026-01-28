@@ -1,55 +1,147 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Материалы и источники</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Материалы и источники</title>
 
-  <link rel="stylesheet" href="../libs/bootstrap-5.3.8-dist/css/bootstrap.min.css">
-  <script src="../libs/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="../libs/bootstrap-5.3.8-dist/css/bootstrap.min.css">
+<script src="../libs/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
 
-  <style>
-    .box {
-      border-radius: 16px;
+<style>
+    /* Фоновый градиент и изображение */
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        min-height: 100vh;
+        color: #fff;
     }
+
+    .hero-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("../images/background.jpg");
+        background-size: cover;
+        background-position: center;
+        filter: brightness(0.5) blur(1px);
+        z-index: -2;
+    }
+
+    .hero-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: -1;
+    }
+
+    /* Навигация */
+    .navbar {
+        background: rgba(0,0,0,0.45) !important;
+        backdrop-filter: blur(12px);
+        border-radius: 12px;
+        margin: 10px 20px;
+        z-index: 2;
+        transition: background 0.3s ease;
+    }
+    .navbar:hover { background: rgba(0,0,0,0.6) !important; }
+    .navbar .navbar-brand, .navbar .btn { color: #fff !important; font-weight: 500; }
+    .navbar .btn-outline-light { border-color: #fff; }
+    .navbar .btn-outline-light:hover { background: rgba(255,255,255,0.15); }
+
+    /* Контейнер */
+    .container { margin-top: 15vh; position: relative; z-index: 2; }
+
+    /* Карточки для контента */
+    .content-card {
+        background: rgba(25,25,55,0.7);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 10px 35px rgba(0,0,0,0.3);
+        margin-bottom: 20px;
+    }
+
+    h3, h5 { color: #fff; font-weight: 600; }
+    p, li, code { color: #fff; }
 
     code {
-      word-break: break-all;
+        background: rgba(255,255,255,0.1);
+        padding: 2px 4px;
+        border-radius: 4px;
+        word-break: break-all;
     }
-  </style>
+
+    ul li { margin-bottom: 0.5rem; }
+
+    /* Кнопки */
+    .btn-primary {
+        background: linear-gradient(90deg,#6a11cb,#2575fc);
+        border: none;
+        color: #fff;
+        font-weight: 500;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+        background: linear-gradient(90deg,#2575fc,#6a11cb);
+        transform: translateY(-2px);
+    }
+
+    .btn-outline-secondary {
+        border-color: #fff;
+        color: #fff;
+        transition: all 0.3s ease;
+    }
+    .btn-outline-secondary:hover {
+        background: rgba(255,255,255,0.15);
+        color: #fff;
+    }
+</style>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+<div class="hero-bg"></div>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="../index.html">Интерактивная карта</a>
-      <div class="d-flex gap-2">
-        <a class="btn btn-outline-primary btn-sm" href="./main.html">Маршрут</a>
-        <a class="btn btn-outline-secondary btn-sm" href="./about.html">О проекте</a>
-      </div>
+        <a class="navbar-brand" href="../index.html">Интерактивная карта</a>
+        <div class="d-flex gap-2">
+            <a class="btn btn-sm btn-outline-light" href="./main.html">Маршрут</a>
+            <a class="btn btn-sm btn-outline-light" href="./about.html">О проекте</a>
+        </div>
     </div>
-  </nav>
+</nav>
 
-  <div class="container my-4" style="max-width: 980px;">
-    <div class="p-4 border bg-light box">
-      <h3 class="mb-2">Материалы для самостоятельного изучения</h3>
+<div class="container my-4" style="max-width: 980px;">
+    <div class="content-card">
+        <h3 class="mb-3">Материалы для самостоятельного изучения</h3>
     </div>
 
-    <div class="p-4 border mt-3 box">
-      <h5>Официальные / научные организации</h5>
-      <ul>
-        <li>Арктический и антарктический НИИ (ААНИИ) — исследования, история экспедиций: <code>https://www.aari.ru/</code></li>
-        <li>Русское географическое общество — публикации и проекты про экспедиции: <code>https://www.rgo.ru/</code></li>
-      </ul>
+    <div class="content-card">
+        <h5>Официальные / научные организации</h5>
+        <ul>
+            <li>Арктический и антарктический НИИ (ААНИИ) — исследования, история экспедиций: <code>https://www.aari.ru/</code></li>
+            <li>Русское географическое общество — публикации и проекты про экспедиции: <code>https://www.rgo.ru/</code></li>
+        </ul>
 
-      <h5 class="mt-3">Справочные материалы</h5>
-      <ul>
-        <li>Большая российская энциклопедия (поиск: “Северный морской путь”, “дрейфующая станция”): <code>https://bigenc.ru/</code></li>
-        <li>Научно-популярные статьи/энциклопедии для сверки дат и терминов (например, Britannica): <code>https://www.britannica.com/</code></li>
-      </ul>
+        <h5 class="mt-3">Справочные материалы</h5>
+        <ul>
+            <li>Большая российская энциклопедия (поиск: “Северный морской путь”, “дрейфующая станция”): <code>https://bigenc.ru/</code></li>
+            <li>Научно-популярные статьи/энциклопедии для сверки дат и терминов (например, Britannica): <code>https://www.britannica.com/</code></li>
+        </ul>
+
+        <div class="mt-3 d-flex gap-2">
+            <a class="btn btn-primary" href="./main.html">Перейти к маршруту</a>
+            <a class="btn btn-outline-secondary" href="../index.html">На главную</a>
+        </div>
     </div>
-  </div>
+</div>
+
 </body>
-
 </html>

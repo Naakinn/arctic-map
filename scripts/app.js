@@ -3,12 +3,9 @@ let infoModal = new bootstrap.Modal(document.getElementById("infoModal"));
 
 let curTopic = "arctic";
 let st = [];
-
 let p = { done: {}, ok: 0 };
 
-function keyP() {
-  return "p_" + curTopic;
-}
+function keyP() { return "p_" + curTopic; }
 
 function loadP() {
   let s = localStorage.getItem(keyP());
@@ -17,27 +14,18 @@ function loadP() {
   if (!p.ok) p.ok = 0;
 }
 
-function saveP() {
-  localStorage.setItem(keyP(), JSON.stringify(p));
-}
+function saveP() { localStorage.setItem(keyP(), JSON.stringify(p)); }
 
 function normP() {
   let ok = 0;
   let ids = {};
   for (let x of st) ids[x.id] = 1;
 
-  for (let id in p.done) {
-    if (!ids[id]) delete p.done[id];
-  }
+  for (let id in p.done) if (!ids[id]) delete p.done[id];
 
-  for (let x of st) {
-    if (p.done[x.id]) ok++;
-  }
+  for (let x of st) if (p.done[x.id]) ok++;
 
-  if (p.ok !== ok) {
-    p.ok = ok;
-    saveP();
-  }
+  if (p.ok !== ok) { p.ok = ok; saveP(); }
 }
 
 function setTopic(id) {
@@ -54,9 +42,7 @@ function updP() {
   let all = st.length;
   let done = 0;
 
-  for (let x of st) {
-    if (p.done[x.id]) done++;
-  }
+  for (let x of st) if (p.done[x.id]) done++;
 
   document.getElementById("pAll").textContent = all;
   document.getElementById("pDone").textContent = done;
@@ -67,7 +53,10 @@ function updP() {
 }
 
 function card(x) {
-  let done = p.done[x.id] ? "✅ пройдено" : "⏳ не пройдено";
+  // Чёрный текст для всех статусов
+  let done = p.done[x.id] 
+    ? `<span class="badge bg-light status-finished">✅ пройдено</span>`
+    : `<span class="badge bg-light status-unfinished">⏳ не пройдено</span>`;
 
   return `
   <div class="col-12 col-md-6 col-lg-4">
@@ -75,7 +64,7 @@ function card(x) {
       <div class="card-body d-flex flex-column">
         <div class="d-flex justify-content-between align-items-start gap-2">
           <h6 class="card-title mb-1">${x.title}</h6>
-          <span class="badge text-bg-light">${done}</span>
+          ${done}
         </div>
         <p class="card-text text-muted mt-2 mb-2">${x.text}</p>
         <button class="btn btn-primary mt-auto" data-info_id="${x.id}">Изучить теорию</button>
@@ -93,13 +82,13 @@ function render() {
   document.querySelectorAll("button[data-id]").forEach(b => {
     b.addEventListener("click", () => openStage(b.dataset.id));
   });
-
   document.querySelectorAll("button[data-info_id]").forEach(b => {
     b.addEventListener("click", () => openInfo(b.dataset.info_id));
   });
 
-  document.getElementById("topicName").textContent =
-    topics.find(x => x.id === curTopic).title;
+  if (document.getElementById("topicName"))
+    document.getElementById("topicName").textContent =
+      topics.find(x => x.id === curTopic).title;
 }
 
 function openStage(id) {
@@ -108,12 +97,10 @@ function openStage(id) {
   document.getElementById("mTitle").textContent = x.title;
   document.getElementById("mText").textContent = x.text;
   document.getElementById("mSrc").textContent = x.src.join(" | ");
-
   document.getElementById("qText").textContent = x.q.t;
 
   let box = document.getElementById("qAns");
   box.innerHTML = "";
-
   let msg = document.getElementById("qMsg");
   msg.innerHTML = "";
 
@@ -138,18 +125,13 @@ function openInfo(id) {
   infoModal.show();
 }
 
-
 function answer(x, i) {
   let ok = i === x.q.ok;
   let msg = document.getElementById("qMsg");
 
   if (ok) {
     msg.innerHTML = `<div class="alert alert-success py-2">Верно! 🎉</div>`;
-    if (!p.done[x.id]) {
-      p.ok++;
-      p.done[x.id] = 1;
-      saveP();
-    }
+    if (!p.done[x.id]) { p.ok++; p.done[x.id] = 1; saveP(); }
   } else {
     msg.innerHTML = `<div class="alert alert-danger py-2">Не совсем. Попробуй ещё раз 🙂</div>`;
   }
@@ -166,3 +148,4 @@ document.getElementById("btnReset").onclick = () => {
 };
 
 setTopic("arctic");
+

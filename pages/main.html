@@ -1,136 +1,231 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Обучающее веб-приложение — Маршрут</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Обучающее веб-приложение — Маршрут</title>
+<link rel="stylesheet" href="../libs/bootstrap-5.3.8-dist/css/bootstrap.min.css">
+<script src="../libs/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
 
-    <link rel="stylesheet" href="../libs/bootstrap-5.3.8-dist/css/bootstrap.min.css">
-    <script src="../libs/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../index.html">Интерактивная карта</a>
-            <div class="d-flex gap-2">
-                <a class="btn btn-outline-primary btn-sm" href="./sources.html">Материалы</a>
-                <a class="btn btn-outline-secondary btn-sm" href="./about.html">О проекте</a>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container my-3">
-
-        <!-- Заголовок -->
-        <div class="row g-3 align-items-stretch">
-            <div class="col-12 col-lg-8">
-                <div class="p-3 border bg-light topic-card">
-                    <h4 class="mb-1">Учебный маршрут: знания через этапы</h4>
-                    <div class="small-muted">
-                        Выбирай тему, открывай этапы, читай факт и отвечай на вопрос.
-                        Прогресс сохраняется на этом компьютере.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Прогресс -->
-            <div class="col-12 col-lg-4">
-                <div class="p-3 border topic-card">
-                    <div class="d-flex justify-content-between">
-                        <div><b>Пройдено:</b> <span id="pDone">0</span>/<span id="pAll">0</span></div>
-                        <div><b>Верно:</b> <span id="pOk">0</span></div>
-                    </div>
-                    <div class="progress mt-2">
-                        <div id="pBar" class="progress-bar" style="width: 0%"></div>
-                    </div>
-                    <button id="btnReset" class="btn btn-sm btn-outline-danger mt-2">
-                        Сбросить прогресс
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Карточки -->
-        <div id="list" class="row g-3 mt-1"></div>
-    </div>
-
-    <!-- Модальное окно -->
-    <div class="modal fade" id="mStage" tabindex="-1">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="mTitle">Этап</h5>
-                    <button class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <p id="mText"></p>
-                    <div class="mt-3">
-                        <b>Вопрос:</b> <span id="qText"></span>
-                        <div id="qAns" class="d-grid gap-2 mt-2"></div>
-                        <div id="qMsg" class="mt-2"></div>
-                    </div>
-
-                    <hr>
-                    <div class="small text-muted">
-                        <b>Источник(и):</b> <span id="mSrc"></span>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Info modal -->
-    <div class="modal fade" id="infoModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="infoModalTitle">Этап</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-                </div>
-                <div class="modal-body">
-                    <p id="infoModalText" class="mb-2"></p>
-                    <hr />
-                    <div class="small text-muted">
-                        <b>Источник(и):</b> <span id="infoModalSrc"></span>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="../scripts/data.js"></script>
-    <script src="../scripts/app.js"></script>
-</body>
 <style>
-    #list .card {
-        border-radius: 16px;
+    /* Базовые стили */
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        min-height: 200vh;
+        color: #fff;
     }
 
+    .hero-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 200vh;
+        background-image: url("../images/background.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: -2;
+        filter: brightness(0.5) blur(1px);
+    }
+
+    .hero-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: -1;
+    }
+
+    /* Навигация */
+    .navbar {
+        background: rgba(0,0,0,0.45) !important;
+        backdrop-filter: blur(12px);
+        border-radius: 12px;
+        margin: 10px 20px;
+        z-index: 2;
+        transition: background 0.3s ease;
+    }
+    .navbar:hover { background: rgba(0,0,0,0.6) !important; }
+    .navbar .navbar-brand, .navbar .btn { color: #fff !important; font-weight: 500; }
+    .navbar .btn-outline-light { border-color: #fff; }
+    .navbar .btn-outline-light:hover { background: rgba(255,255,255,0.15); }
+
+    /* Контейнер */
+    .container { margin-top: 18vh; position: relative; z-index: 2; }
+
+    /* Карточки */
+    .topic-card, #list .card {
+        background: rgba(25,25,55,0.7);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 20px;
+        box-shadow: 0 10px 35px rgba(0,0,0,0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        padding: 20px;
+        color: #fff; /* основной текст белый */
+    }
+    .topic-card:hover, #list .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 18px 60px rgba(0,0,0,0.45);
+    }
+    .topic-card h4, #list .card h5 { font-weight: 600; }
+
+    /* Все тексты внутри карточек белые */
+    .topic-card p, .topic-card span, .topic-card h4,
+    #list .card p, #list .card span, #list .card h5 {
+        color: #fff !important;
+    }
+
+    /* Статусы на карточках — чёрный текст */
+    #list .card .status-finished,
+    #list .card .status-unfinished {
+        color: #000 !important;
+    }
+
+    /* Мелкий текст */
+    .topic-card .small-muted,
+    #list .card .small-muted {
+        color: rgba(255,255,255,0.85);
+        text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+    }
+
+    /* Кнопки */
+    .btn-custom {
+        background: linear-gradient(90deg,#6a11cb,#2575fc);
+        color: #fff;
+        font-weight: 500;
+        border: none;
+        transition: all 0.3s ease;
+        border-radius: 12px;
+    }
+    .btn-custom:hover {
+        background: linear-gradient(90deg,#2575fc,#6a11cb);
+        transform: translateY(-3px);
+    }
+
+    /* Прогресс */
     .progress {
-        height: 10px;
+        height: 14px;
         border-radius: 999px;
+        background: rgba(255,255,255,0.2);
+        overflow: hidden;
+    }
+    .progress-bar {
+        background: linear-gradient(90deg,#6a11cb,#2575fc);
+        transition: width 0.6s ease;
     }
 
-    .topic-card {
-        border-radius: 16px;
+    /* Модальные окна */
+    .modal-content {
+        background: rgba(30,30,60,0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 20px;
+        color: #fff;
+        transition: transform 0.3s ease;
     }
+    .modal-content:hover { transform: translateY(-5px); }
 
-    .small-muted {
-        font-size: 0.92rem;
-        color: #6c757d;
-    }
+    #infoModalText { white-space: pre-line; margin-bottom: 1rem; }
 
-    #infoModalText {
-        white-space: pre-line;
-        margin-bottom: 1rem;
-    }
 </style>
+</head>
+<body>
+
+<div class="hero-bg"></div>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="../index.html">Интерактивная карта</a>
+        <div class="d-flex gap-2">
+            <a class="btn btn-sm btn-outline-light" href="./sources.html">Материалы</a>
+            <a class="btn btn-sm btn-outline-light" href="./about.html">О проекте</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container my-3">
+    <div class="row g-3 align-items-stretch">
+        <div class="col-12 col-lg-8">
+            <div class="topic-card">
+                <h4 class="mb-2">Учебный маршрут: знания через этапы</h4>
+                <div class="small-muted">
+                    Выбирай тему, открывай этапы, читай факт и отвечай на вопрос.<br>
+                    Прогресс сохраняется на этом компьютере.
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4">
+            <div class="topic-card">
+                <div class="d-flex justify-content-between mb-2">
+                    <div><b>Пройдено:</b> <span id="pDone">0</span>/<span id="pAll">0</span></div>
+                    <div><b>Верно:</b> <span id="pOk">0</span></div>
+                </div>
+                <div class="progress mt-2">
+                    <div id="pBar" class="progress-bar" style="width: 0%"></div>
+                </div>
+                <button id="btnReset" class="btn btn-sm btn-outline-light mt-2">Сбросить прогресс</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="list" class="row g-3 mt-1">
+        <!-- Карточки генерируются скриптом -->
+    </div>
+</div>
+
+<!-- Модальные окна -->
+<div class="modal fade" id="mStage" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mTitle">Этап</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p id="mText"></p>
+                <div class="mt-3">
+                    <b>Вопрос:</b> <span id="qText"></span>
+                    <div id="qAns" class="d-grid gap-2 mt-2"></div>
+                    <div id="qMsg" class="mt-2"></div>
+                </div>
+                <hr>
+                <div class="small text-muted">
+                    <b>Источник(и):</b> <span id="mSrc"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="infoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="infoModalTitle">Этап</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <p id="infoModalText" class="mb-2"></p>
+                <hr />
+                <div class="small text-muted">
+                    <b>Источник(и):</b> <span id="infoModalSrc"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../scripts/data.js"></script>
+<script src="../scripts/app.js"></script>
+</body>
 </html>
