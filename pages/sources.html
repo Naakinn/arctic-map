@@ -102,11 +102,51 @@
         background: rgba(255,255,255,0.15);
         color: #fff;
     }
+
+    /* ❄️ СНЕЖИНКИ — БЕЗ ИЗМЕНЕНИЙ */
+    .snow {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 3;
+        overflow: hidden;
+    }
+
+    .snowflake {
+        position: absolute;
+        top: -10%;
+        color: #fff;
+        opacity: 0.8;
+        user-select: none;
+        animation-name: snow-fall;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes snow-fall {
+        0% { transform: translateY(-10vh); }
+        100% { transform: translateY(110vh); }
+    }
 </style>
 </head>
 
 <body>
+
 <div class="hero-bg"></div>
+
+<!-- ❄️ СНЕГ -->
+<div class="snow">
+    <div class="snowflake" style="left:5%; font-size:14px; animation-duration:16s;">❄</div>
+    <div class="snowflake" style="left:15%; font-size:18px; animation-duration:12s;">❄</div>
+    <div class="snowflake" style="left:25%; font-size:12px; animation-duration:18s;">❄</div>
+    <div class="snowflake" style="left:35%; font-size:22px; animation-duration:10s;">❄</div>
+    <div class="snowflake" style="left:45%; font-size:16px; animation-duration:14s;">❄</div>
+    <div class="snowflake" style="left:55%; font-size:20px; animation-duration:11s;">❄</div>
+    <div class="snowflake" style="left:65%; font-size:15px; animation-duration:17s;">❄</div>
+    <div class="snowflake" style="left:75%; font-size:19px; animation-duration:13s;">❄</div>
+    <div class="snowflake" style="left:85%; font-size:13px; animation-duration:19s;">❄</div>
+    <div class="snowflake" style="left:95%; font-size:21px; animation-duration:12s;">❄</div>
+</div>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
